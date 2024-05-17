@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql_db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: boxer312004
+      MYSQL_ROOT_HOST: '%'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.2
+    restart: always
+    ports:
+      - 9001:80
+    environment:
+      PMA_HOST: mysql_db
+    depends_on:
+      - mysql_db
